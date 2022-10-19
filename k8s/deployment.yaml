@@ -1,0 +1,40 @@
+apiVersion: apps:v1
+kind: Deployment
+metadata:
+  name: postgree
+spec:
+  selector:
+    matchLabels:
+      app: postgree
+  template:
+    metadata:
+      labels:
+        app: postgre
+    spec:
+      containers:
+         - name: postgre
+        image: postgres:15.0
+        ports:
+         - containerPort: 5432
+         env:
+         - name: POSTGRES_PASSWORD
+           value: cpd@123
+         - name: POSTGRES_USER
+           value: andre
+         - name: POSTGRES_DB
+           value: andre
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgre
+spec:
+  selector:
+    app: postgre
+  ports:
+  - port: 5432
+  type: ClusterIP
+
+---
