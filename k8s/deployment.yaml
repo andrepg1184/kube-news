@@ -43,6 +43,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
+  replicas: 10
   selector:
     matchLabels:
       app: web
@@ -53,16 +54,16 @@ spec:
     spec:
       containers:
          - name: web
-           image: andrepg1184/kube-news:v1
+           image: andrepg1184/kube-news:v2
            ports:
            - containerPort: 8080
            env:
            - name: DB_PASSWORD
-             value: cpd@123
+             value: "cpd@123"
            - name: DB_USERNAME
-             value: andre
+             value: "andre"
            - name: DB_DATABASE
-             value: andre
+             value: "andre"
            - name: DB_HOST
              value: "postgre"
           
@@ -78,7 +79,7 @@ spec:
   - port: 80
     targetPort: 8080
     nodePort: 30000
-  type: ClusterIP
+  type: NodePort
 
 ---
              
