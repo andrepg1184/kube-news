@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages{
+
+        stage('Build Docker image'){
+            steps{
+                scrips{
+                    dockerapp = docker.build("andrepg1184/kube-news:${env.BUILD}", '-f ./src/Dockerfile ./src')
+                }
+            }
+        }
+    }
+}
